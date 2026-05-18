@@ -3,116 +3,31 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="robots" content="noindex, nofollow" />
-  <title>Email confirmé — CookoBBQ</title>
-  <link rel="stylesheet" href="../style.css" />
+  <title>CookoBBQ — redirection</title>
+  <script>
+    // Migration : la page de confirmation a migré sur cookobbq.com.
+    // Crucial : préserver le hash de l'URL (Supabase y met les tokens
+    // access_token / refresh_token / type=signup). Sans cette
+    // préservation, la confirmation côté serveur reste OK mais l'user
+    // ne voit pas le message succès branded.
+    window.location.replace(
+      'https://cookobbq.com/auth/confirm.html' + window.location.hash
+    );
+  </script>
+  <meta http-equiv="refresh" content="1; url=https://cookobbq.com/auth/confirm.html" />
   <style>
-    .check {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      background: rgba(92, 140, 107, 0.15);
-      color: #5C8C6B;
-      margin: 24px auto 16px;
-      font-size: 42px;
-      font-weight: 700;
-    }
-    .error-mark {
-      background: rgba(184, 64, 54, 0.12);
-      color: #B84036;
-    }
-    .center { text-align: center; }
+    body { font-family: system-ui, sans-serif; padding: 40px 24px; max-width: 560px; margin: 0 auto; color: #1F1A17; line-height: 1.5; }
+    a { color: #D2502A; }
   </style>
 </head>
 <body>
-  <div class="container">
-    <header class="brand">
-      <span class="brand-flame" aria-hidden="true"></span>
-      <span class="brand-name">Cooko<span class="bbq">BBQ</span></span>
-    </header>
-
-    <div id="loading">
-      <h1 class="center">Validation en cours…</h1>
-      <p class="center">On vérifie ton lien.</p>
-    </div>
-
-    <div id="success" style="display: none;">
-      <div class="check">✓</div>
-      <h1 class="center">Email confirmé&nbsp;!</h1>
-      <p class="center">
-        Ton compte est maintenant actif. Ouvre l&apos;application
-        <strong>CookoBBQ</strong> sur ton téléphone et connecte-toi
-        normalement.
-      </p>
-    </div>
-
-    <div id="error" style="display: none;">
-      <div class="check error-mark">!</div>
-      <h1 class="center">Lien invalide</h1>
-      <p class="center" id="error-message">
-        Le lien de confirmation est invalide ou a expiré. Recrée ton
-        compte depuis l&apos;application, ou contacte
-        <a href="mailto:contact@cookobbq.com">contact@cookobbq.com</a>.
-      </p>
-    </div>
-
-    <div class="footer">
-      <a href="../">← CookoBBQ</a>
-      <a href="../legal/privacy.html">Confidentialité</a>
-      <a href="mailto:contact@cookobbq.com">contact@cookobbq.com</a>
-    </div>
-  </div>
-
+  <h1>CookoBBQ</h1>
+  <p>Redirection vers la nouvelle page de confirmation…</p>
+  <p>Si rien ne se passe, <a id="link" href="https://cookobbq.com/auth/confirm.html">clique ici</a>.</p>
   <script>
-    (function () {
-      // Parse le hash URL — Supabase y met soit les tokens de session
-      // (cas succès : access_token + refresh_token + type=signup), soit
-      // une erreur (error= ou error_description=).
-      const hash = window.location.hash.replace(/^#/, '');
-      const params = new URLSearchParams(hash);
-
-      const accessToken = params.get('access_token');
-      const type = params.get('type');
-      const errorMsg = params.get('error_description') || params.get('error');
-
-      const loadingEl = document.getElementById('loading');
-      const successEl = document.getElementById('success');
-      const errorEl = document.getElementById('error');
-      const errorMessageEl = document.getElementById('error-message');
-
-      function hideLoading() {
-        loadingEl.style.display = 'none';
-      }
-
-      // Cas 1 : erreur explicite dans l'URL (token déjà utilisé, expiré…).
-      if (errorMsg) {
-        hideLoading();
-        errorMessageEl.textContent = decodeURIComponent(errorMsg).replace(
-          /\+/g,
-          ' '
-        );
-        errorEl.style.display = 'block';
-        return;
-      }
-
-      // Cas 2 : pas d'access_token ni d'erreur → l'utilisateur est
-      // arrivé sur la page sans cliquer un vrai lien de confirmation.
-      if (!accessToken || type !== 'signup') {
-        hideLoading();
-        errorEl.style.display = 'block';
-        return;
-      }
-
-      // Cas 3 : access_token présent → Supabase a déjà confirmé l'email
-      // côté serveur quand il a redirigé ici. On affiche juste le succès.
-      // Pas besoin d'appeler updateUser ou autre — l'effet de bord
-      // (email_confirmed_at=now()) est déjà fait.
-      hideLoading();
-      successEl.style.display = 'block';
-    })();
+    // Lien manuel avec le hash préservé
+    document.getElementById('link').href =
+      'https://cookobbq.com/auth/confirm.html' + window.location.hash;
   </script>
 </body>
 </html>
