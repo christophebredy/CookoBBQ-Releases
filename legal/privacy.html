@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="index, follow" />
+  <title>Politique de confidentialité — CookoBBQ</title>
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+  <div class="container">
+    <header class="brand">
+      <span class="brand-flame" aria-hidden="true"></span>
+      <span class="brand-name">Cooko<span class="bbq">BBQ</span></span>
+    </header>
+
+    <h1>Politique de confidentialité</h1>
+    <p class="subtitle">Dernière mise à jour : 18 mai 2026</p>
+
+    <p>
+      CookoBBQ respecte ta vie privée. Cette politique explique quelles
+      données nous collectons, pourquoi, comment elles sont stockées,
+      et quels sont tes droits.
+    </p>
+
+    <div class="summary">
+      <p><strong>En résumé :</strong></p>
+      <p>
+        CookoBBQ est une application gratuite et indépendante. Tu peux
+        l'utiliser sans compte — auquel cas <strong>aucune donnée n'est
+        envoyée à nos serveurs</strong>. Si tu crées un compte, on stocke
+        ton email, optionnellement ton prénom, et tes données métier
+        (modèle de Woodfire, favoris, historique des cuissons). Nous
+        n'utilisons aucun outil de tracking publicitaire. Nous ne vendons
+        jamais tes données.
+      </p>
+    </div>
+
+    <h2>1. Responsable du traitement</h2>
+    <p>
+      Christophe Brédy (particulier), éditeur de l'application —
+      <a href="mailto:contact@cookobbq.com">contact@cookobbq.com</a>.
+    </p>
+
+    <h2>2. Données collectées</h2>
+
+    <h3>2.1 Sans compte (mode "Continuer sans compte")</h3>
+    <p>
+      Aucune donnée n'est transmise à nos serveurs. Tes favoris et ton
+      historique de cuissons restent uniquement sur ton téléphone
+      (stockage local <code>AsyncStorage</code>). Aucune analytics,
+      aucun tracker, aucune connexion réseau hors téléchargement
+      ponctuel d'images de recettes (assets statiques embarqués dans
+      l'application).
+    </p>
+
+    <h3>2.2 Avec un compte</h3>
+    <ul>
+      <li><strong>Email</strong> — pour t'identifier et te permettre de récupérer ton compte sur un autre appareil.</li>
+      <li><strong>Mot de passe</strong> — stocké sous forme hashée (bcrypt) par Supabase, jamais transmis ni stocké en clair.</li>
+      <li><strong>Prénom</strong> (optionnel) — pour personnaliser l'application.</li>
+      <li><strong>Modèle de Ninja Woodfire</strong> (optionnel) — pour adapter le wording autour de la sonde et des températures.</li>
+      <li><strong>Liste des recettes favorites</strong> — slugs des recettes uniquement.</li>
+      <li><strong>Historique des cuissons</strong> — slug de la recette + date de cuisson.</li>
+    </ul>
+
+    <h3>2.3 Données techniques NON collectées</h3>
+    <p>
+      CookoBBQ ne collecte <strong>aucune</strong> donnée d'usage, de
+      localisation, d'identifiant publicitaire, d'appareil ou de réseau.
+      Aucun SDK tiers de mesure d'audience ou de publicité n'est intégré.
+    </p>
+
+    <h2>3. Finalités</h2>
+    <ul>
+      <li>Te permettre de te connecter et de récupérer tes données sur tous tes appareils.</li>
+      <li>Synchroniser tes favoris et ton historique entre tes appareils.</li>
+      <li>Adapter le wording de l'application au modèle de ton Woodfire (par exemple : "Suivi temps réel app Ninja" si Pro Connect, sinon "Thermosonde Thermapen").</li>
+    </ul>
+
+    <h2>4. Base légale</h2>
+    <p>
+      Le traitement est fondé sur ton <strong>consentement explicite</strong>
+      lors de la création du compte (art. 6.1.a du RGPD). Tu peux retirer
+      ce consentement à tout moment en supprimant ton compte depuis
+      l'application (Profil → Supprimer mon compte).
+    </p>
+
+    <h2>5. Destinataires des données</h2>
+    <p>
+      Tes données sont stockées exclusivement sur les serveurs de
+      <strong>Supabase Inc.</strong> dans la région <code>eu-west-1</code>
+      (Irlande, Union Européenne). Aucun tiers n'y a accès. L'éditeur
+      lui-même y accède uniquement de façon agrégée et anonyme pour des
+      besoins techniques (statistiques de nombre d'utilisateurs).
+    </p>
+
+    <h2>6. Durée de conservation</h2>
+    <p>
+      Tes données sont conservées tant que ton compte est actif. Lorsque
+      tu supprimes ton compte, <strong>toutes tes données sont effacées
+      immédiatement et de façon irréversible</strong> (cascade SQL
+      <code>ON DELETE CASCADE</code> sur les tables liées).
+    </p>
+
+    <h2>7. Tes droits</h2>
+    <p>
+      Conformément au RGPD, tu disposes des droits suivants — exerçables
+      directement depuis l'application ou par email :
+    </p>
+    <ul>
+      <li><strong>Droit d'accès et de portabilité</strong> — tes données sont visibles dans l'application (favoris, historique). Pour un export brut, contacte-nous.</li>
+      <li><strong>Droit de rectification</strong> — modifie ton prénom et ton modèle Woodfire dans Profil.</li>
+      <li><strong>Droit à l'effacement</strong> — supprime ton compte dans Profil → Supprimer mon compte (suppression définitive, immédiate).</li>
+      <li><strong>Droit d'opposition et de limitation</strong> — contacte-nous à <a href="mailto:contact@cookobbq.com">contact@cookobbq.com</a>.</li>
+    </ul>
+
+    <h2>8. Sécurité</h2>
+    <ul>
+      <li>Transmission des données chiffrée <strong>TLS 1.3</strong> entre l'application et Supabase.</li>
+      <li>Mots de passe hashés (bcrypt) côté Supabase, jamais transmis en clair.</li>
+      <li><strong>Row Level Security (RLS)</strong> activé sur toutes les tables : un utilisateur ne peut accéder qu'à ses propres données.</li>
+    </ul>
+
+    <h2>9. Cookies et trackers</h2>
+    <p>
+      CookoBBQ n'utilise <strong>aucun cookie</strong>, <strong>aucun
+      tracker</strong>, <strong>aucun SDK publicitaire</strong>. Aucune
+      analytics tierce n'est intégrée.
+    </p>
+
+    <h2>10. Réclamation auprès d'une autorité de contrôle</h2>
+    <p>
+      Si tu estimes que tes droits ne sont pas respectés, tu peux adresser
+      une réclamation à la <strong>CNIL</strong> (Commission Nationale de
+      l'Informatique et des Libertés) —
+      <a href="https://www.cnil.fr" target="_blank" rel="noopener noreferrer">www.cnil.fr</a>.
+    </p>
+
+    <h2>11. Contact</h2>
+    <p>
+      Pour toute question relative à cette politique ou à tes données
+      personnelles : <a href="mailto:contact@cookobbq.com">contact@cookobbq.com</a>.
+    </p>
+
+    <h2>12. Modifications</h2>
+    <p>
+      Cette politique peut être mise à jour. La date de "dernière mise à
+      jour" en haut de page indique la version en vigueur. Les changements
+      substantiels seront notifiés dans l'application.
+    </p>
+
+    <div class="footer">
+      <a href="./">↑ Sommaire</a>
+      <a href="./mentions.html">Mentions légales</a>
+      <a href="./terms.html">CGU</a>
+    </div>
+  </div>
+</body>
+</html>
